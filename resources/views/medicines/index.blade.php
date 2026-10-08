@@ -20,6 +20,21 @@
                     </div>    
                 @endif           
                 @forelse ($medicines as $medicine)
+
+                    <div class="flex items-center space-x-2">
+                     <a href="{{ route('medicines.edit', $medicine) }}" class="px-3 py-1 bg-amber-500 hover:bg-amber-600 text-white font-medium rounded-md text-sm">
+                    Editar
+                    </a>
+                    <form action="{{ route('medicines.destroy', $medicine) }}" method="POST" onsubmit="return   confirm('Tem certeza que deseja excluir este medicamento?');">
+                         @csrf
+                         @method('DELETE')
+                         <button type="submit" class="px-3 py-1 bg-red-600 hover:bg-red-700 text-white font-medium rounded-md        text-sm">
+                         Excluir
+                        </button>
+                    </form>
+                    </div>
+
+                    
                     <div class="mb-4 p-4 border rounded">
                         <h3 class="text-lg font-semibold">{{ $medicine->name }}</h3>
                         <p class="text-gray-600">Dosagem: {{ $medicine->dosage }}</p>
